@@ -32,7 +32,9 @@ class Game
   sf::Text menu_text;
   sf::Text play_text;
   sf::Text quit_text;
+  
   bool in_menu;
+  bool play_option;
 
 };
 

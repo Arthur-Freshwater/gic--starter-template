@@ -94,8 +94,6 @@ void Game::render()
 		window.draw(title_text);
 		window.draw(bird);
 	}
-
-	
 }
 
 void Game::mouseClicked(sf::Event event)
@@ -108,7 +106,33 @@ void Game::mouseClicked(sf::Event event)
 
 void Game::keyPressed(sf::Event event)
 {
-
+	if (
+		(event.key.code == sf::Keyboard::Left) ||
+		(event.key.code == sf::Keyboard::Right))
+	{
+		play_option = !play_option;
+		if (!play_option)
+		{
+			play_text.setString("> Play <");
+			quit_text.setString("Quit");
+		}
+		else
+		{
+			play_text.setString("Play");
+			quit_text.setString("> Quit <");
+		}
+	}
+	else if (event.key.code == sf::Keyboard::Enter)
+	{
+		if (!play_option)
+		{
+			in_menu = false;
+		}
+		else
+		{
+			window.close();
+		}
+	}
 }
 
 
