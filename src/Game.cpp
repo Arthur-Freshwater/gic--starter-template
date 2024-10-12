@@ -202,7 +202,6 @@ void Game::spawn(sf::Sprite)
 	int rand_y = rand() % window.getSize().y;
 	bird.setPosition(rand_x,rand_y);
 
-	std::cout << bird.getPosition().x << "\n" << bird.getPosition().y << "\n" << rand_x;
 }
 
 
