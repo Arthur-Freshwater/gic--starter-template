@@ -80,7 +80,35 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-	bird.move(1.0f * speed * dt, 0);
+	if (in_menu)
+	{
+
+	}
+	else
+	{
+		if ((bird.getPosition().x > (window.getSize().x - bird.getGlobalBounds().width)) ||
+			(bird.getPosition().x < 0))
+		{
+			reverse = !reverse;
+		}
+
+		if (!reverse)
+		{
+			bird.move(-1.0f * speed * dt, 0);
+			bird.setTextureRect(sf::IntRect(
+				bird.getLocalBounds().width,
+				0,
+				-bird.getLocalBounds().width,
+				bird.getLocalBounds().height));
+		}
+		else
+		{
+			bird.move(1.0f * speed * dt, 0);
+			bird.setTextureRect(sf::IntRect(
+				0, 0, bird.getLocalBounds().width, bird.getLocalBounds().height));
+
+		}
+	}
 }
 
 void Game::render()

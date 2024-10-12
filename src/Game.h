@@ -36,7 +36,8 @@ class Game
   bool in_menu;
   bool play_option;
 
-  int speed = 100;
+  int speed = 300;
+  bool reverse;
 
 };
 
