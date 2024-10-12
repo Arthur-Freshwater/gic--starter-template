@@ -36,6 +36,8 @@ class Game
   bool in_menu;
   bool play_option;
 
+  int speed = 100;
+
 };
 
 #endif // PLATFORMER_GAME_H

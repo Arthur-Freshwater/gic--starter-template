@@ -6,6 +6,9 @@ Game::Game(sf::RenderWindow& game_window)
   : window(game_window)
 {
   srand(time(NULL));
+  sf::Clock clock;
+  sf::Time time = clock.restart();
+  float dt = time.asSeconds();
 }
 
 Game::~Game()
@@ -77,7 +80,7 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-
+	bird.move(1.0f * speed * dt, 0);
 }
 
 void Game::render()
