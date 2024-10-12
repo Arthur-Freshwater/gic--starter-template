@@ -26,6 +26,14 @@ class Game
   sf::Sprite bird;
   sf::Texture bird_texture;
 
+  sf::Text title_text;
+  sf::Font font;
+
+  sf::Text menu_text;
+  sf::Text play_text;
+  sf::Text quit_text;
+  bool in_menu;
+
 };
 
 #endif // PLATFORMER_GAME_H
