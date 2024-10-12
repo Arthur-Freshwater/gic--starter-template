@@ -14,6 +14,8 @@ class Game
   void render();
   void mouseClicked(sf::Event event);
   void keyPressed(sf::Event event);
+  bool collisionCheck(sf::Vector2i, sf::Sprite);
+  void spawn(sf::Sprite);
 
  private:
   sf::RenderWindow& window;
@@ -38,6 +40,11 @@ class Game
 
   int speed = 300;
   bool reverse;
+
+  sf::Vector2i click;
+
+  sf::Text score_text;
+  int score = 0;
 
 };
 

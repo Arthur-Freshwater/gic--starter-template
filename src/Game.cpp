@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include <iostream>
+#include <random>
 
 Game::Game(sf::RenderWindow& game_window)
   : window(game_window)
@@ -73,6 +74,14 @@ bool Game::init()
 		window.getSize().x / 2 + (menu_text.getGlobalBounds().width / 2) - (quit_text.getGlobalBounds().width),
 		window.getSize().y / 4 - quit_text.getGlobalBounds().height / 2);
 
+	score_text.setString("0");
+	score_text.setFont(font);
+	score_text.setCharacterSize(50);
+	score_text.setFillColor(sf::Color(255, 0, 0, 255));
+	score_text.setPosition(
+		window.getSize().x - score_text.getGlobalBounds().width * 6,
+		window.getSize().y / 6 - score_text.getGlobalBounds().height / 2);
+
 
 
   return true;
@@ -123,6 +132,7 @@ void Game::render()
 	{
 		window.draw(background);
 		window.draw(title_text);
+		window.draw(score_text);
 		window.draw(bird);
 	}
 }
@@ -130,7 +140,18 @@ void Game::render()
 void Game::mouseClicked(sf::Event event)
 {
   //get the click position
-  sf::Vector2i click = sf::Mouse::getPosition(window);
+  click.x = sf::Mouse::getPosition(window).x;
+  click.y = sf::Mouse::getPosition(window).y;
+
+  //check if in bounds of bird Sprite
+  if (collisionCheck(click, bird))
+  {
+	  score++;
+	  score_text.setString(std::to_string(score));
+	  
+	  spawn(bird);
+
+  }
 
 
 }
@@ -164,6 +185,24 @@ void Game::keyPressed(sf::Event event)
 			window.close();
 		}
 	}
+}
+
+bool Game::collisionCheck(sf::Vector2i, sf::Sprite)
+{
+	if ((click.x > bird.getPosition().x && (click.x < bird.getPosition().x + bird.getGlobalBounds().width)) && 
+		(click.y > bird.getPosition().y && (click.y < bird.getPosition().y + bird.getGlobalBounds().height)))
+	{
+		return true;
+	}
+}
+
+void Game::spawn(sf::Sprite)
+{
+	int rand_x = rand() % window.getSize().x;
+	int rand_y = rand() % window.getSize().y;
+	bird.setPosition(rand_x,rand_y);
+
+	std::cout << bird.getPosition().x << "\n" << bird.getPosition().y << "\n" << rand_x;
 }
 
 
