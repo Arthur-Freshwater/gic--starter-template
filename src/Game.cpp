@@ -194,12 +194,25 @@ bool Game::collisionCheck(sf::Vector2i, sf::Sprite)
 	{
 		return true;
 	}
+	else
+	{
+		return false;
+	}
 }
 
 void Game::spawn(sf::Sprite)
 {
 	int rand_x = rand() % window.getSize().x;
 	int rand_y = rand() % window.getSize().y;
+
+	if (rand_x > window.getSize().x - bird.getGlobalBounds().width)
+	{
+		rand_x = window.getSize().x - bird.getGlobalBounds().width;
+	}
+	else if (rand_y > window.getSize().y - bird.getGlobalBounds().height)
+	{
+		rand_y = rand_y > window.getSize().y - bird.getGlobalBounds().height;
+	}
 	bird.setPosition(rand_x,rand_y);
 
 }
